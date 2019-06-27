@@ -47,4 +47,6 @@ if [ ! -e "${DIR}/node_modules" ]; then
   exit 1
 fi
 
+export CERT_FILE="../c.pem"
+
 cd ${DIR} && node src/index.js ${SERVE} $@
