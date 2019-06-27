@@ -8,7 +8,7 @@ WORKDIR /app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # COPY package*.json ./
 
-COPY serve /app 
+COPY serve /app/serve 
 
 WORKDIR /app/serve
 
@@ -17,7 +17,7 @@ RUN npm install
 WORKDIR /app
 
 # Bundle app source
-COPY imagetarget /app
+COPY imagetarget /app/imagetarget
 # Build react/vue/angular bundle static files
 # RUN npm run build
 
