@@ -1,4 +1,6 @@
-FROM node:carbon
+FROM node:8.16-alpine
+
+RUN apk add --no-cache bash
 
 # Create app directory
 WORKDIR /app
@@ -12,7 +14,7 @@ COPY serve /app/serve
 
 WORKDIR /app/serve
 
-RUN npm install
+RUN npm install --only=production
 
 WORKDIR /app
 

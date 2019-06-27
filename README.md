@@ -21,3 +21,13 @@ Built entirely using standards-compliant JavaScript and WebGL, 8th Wall Web is a
 * [three.js Examples](https://github.com/8thwall/web/tree/master/examples/threejs)
 * [Camera Pipeline Examples](https://github.com/8thwall/web/tree/master/examples/camerapipeline)
 * [Amazon Sumerian Setup](https://github.com/8thwall/web/tree/master/gettingstarted/xrsumerian)
+
+# Dockering
+
+To build docker image use:
+
+`docker build -t wine-vr .`
+
+To run docker image on https port use
+
+`docker run --rm -it -p 443:8080 wine-vr`
