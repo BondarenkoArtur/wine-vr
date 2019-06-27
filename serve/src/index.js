@@ -57,6 +57,7 @@ const serverConfig = {
   historyApiFallback: {
     disableDotRule: true,
   },
+  disableHostCheck: true,
 }
 
 const config = {
