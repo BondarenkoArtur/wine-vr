@@ -47,6 +47,14 @@ if [ ! -e "${DIR}/node_modules" ]; then
   exit 1
 fi
 
-export CERT_FILE="../c.pem"
+C_FILE="/tmp/c.pem"
+
+if [ ! -e $C_FILE ]; then
+  echo "Trying to create cert file"
+  cat /etc/letsencrypt/live/8wall.69.mu/cert.pem > $C_FILE
+  cat /etc/letsencrypt/live/8wall.69.mu/privkey.pem >> $C_FILE
+fi
+
+export CERT_FILE=$C_FILE
 
 cd ${DIR} && node src/index.js ${SERVE} $@
