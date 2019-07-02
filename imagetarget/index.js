@@ -26,18 +26,3 @@ AFRAME.registerComponent("image-target", {
     });
   }
 });
-
-// Displays the name of the image target as it was set in the 8th Wall console.
-AFRAME.registerComponent("targetname", {
-  init: function() {
-    const el = this.el;
-    el.sceneEl.addEventListener("xrimagefound", ({ detail }) => {
-      el.setAttribute(
-        "value",
-        detail.name.length > 20
-          ? `${detail.name.substring(0, 17)}...`
-          : detail.name
-      );
-    });
-  }
-});

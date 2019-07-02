@@ -1,3 +1,33 @@
 .hidden {
   display: none;
 }
+
+.loader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.loader__box {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+
+.loader__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 250px;
+  min-height: 250px;
+}
+
+.loader__img img {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
