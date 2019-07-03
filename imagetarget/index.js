@@ -7,6 +7,7 @@ AFRAME.registerComponent("image-target", {
     // Sets the position of the frame to match the image target.
     const showImage = ({ detail }) => {
       const { id } = detail.metadata;
+      focus.classList.add("hidden");
 
       if (object3D.el.id === id) {
         object3D.position.copy(detail.position);
@@ -24,5 +25,37 @@ AFRAME.registerComponent("image-target", {
     sceneEl.addEventListener("xrimagelost", () => {
       object3D.visible = false;
     });
+
+    const oboardingHasShowed = () => {
+      return !!localStorage.getItem("oboardingHasShowed");
+    };
+
+    const markOnboardingAsShowed = () => {
+      localStorage.setItem("oboardingHasShowed", true);
+    };
+
+    const realityReadyHandler = () => {
+      if (!oboardingHasShowed()) {
+        wrapper.classList.remove("hidden");
+      } else {
+        focus.classList.remove("hidden");
+      }
+    };
+
+    const onBtnClickHandler = e => {
+      e.stopPropagation();
+      wrapper.classList.add("hidden");
+      focus.classList.remove("hidden");
+      markOnboardingAsShowed();
+    };
+
+    const wrapper = document.getElementById("onboarding-wrapper");
+    const btn = document.getElementById("onboarding-btn");
+    const focus = document.getElementById("focus");
+
+    btn.addEventListener("click", onBtnClickHandler);
+
+    // fires when camera is ready
+    sceneEl.addEventListener("realityready", realityReadyHandler);
   }
 });
