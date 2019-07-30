@@ -36,7 +36,13 @@
     xrextras-runtime-error>
 
     <a-assets>
-      <a-asset-item id="hope-glb" src="assets/dark_onehope.glb"></a-asset-item>
+      <a-asset-item id="hope-merlot-glb" src="assets/dark_onehope_merlot.glb"></a-asset-item>
+    </a-assets>
+    <a-assets>
+      <a-asset-item id="hope-cabernet-glb" src="assets/dark_onehope_cabernet.glb"></a-asset-item>
+    </a-assets>
+    <a-assets>
+      <a-asset-item id="hope-redblend-glb" src="assets/dark_onehope_redblend.glb"></a-asset-item>
     </a-assets>
     <a-assets>
       <a-asset-item id="castel-glb" src="assets/dark_castel.glb"></a-asset-item>
@@ -50,26 +56,40 @@
     <!-- <a-light type="ambient" intensity="1.3"></a-light> -->
 
     <!-- A 3d object that tracks the image target. -->
-    <a-entity image-target id="oneHope">
+    <a-entity image-target id="oneHopeMerlot">
       <!--  Display a 3d model of an image frame. -->
-      <a-entity id="hope" gltf-model="#hope-glb" position="0.015 -0.01 0" rotation="0 -90 0" scale=".5 .75 .7"></a-entity>
+      <a-entity id="hope-merlot" gltf-model="#hope-merlot-glb" position="0.015 -0.01 0" rotation="0 -90 0" scale=".5 .75 .7"></a-entity>
 
       <!-- Add extra lighting to highlight the 3d geometry of the image frame. -->
-      <a-light type="directional" intensity="1" target="#hope" position="1.5 0.6 2.5"> </a-light>
+      <a-light type="ambient" intensity="1" target="#hope-merlot" position="1.5 0.6 2.5"> </a-light>
+    </a-entity>
+    <a-entity image-target id="oneHopeCabernet">
+      <!--  Display a 3d model of an image frame. -->
+      <a-entity id="hope-cabernet" gltf-model="#hope-cabernet-glb" position="0.015 -0.01 0" rotation="0 -90 0" scale=".5 .75 .7"></a-entity>
+
+      <!-- Add extra lighting to highlight the 3d geometry of the image frame. -->
+      <a-light type="ambient" intensity="1" target="#hope-cabernet" position="1.5 0.6 2.5"> </a-light>
+    </a-entity>
+    <a-entity image-target id="oneHopeRedBlend">
+      <!--  Display a 3d model of an image frame. -->
+      <a-entity id="hope-redblend" gltf-model="#hope-redblend-glb" position="0.015 -0.01 0" rotation="0 -90 0" scale=".5 .75 .7"></a-entity>
+
+      <!-- Add extra lighting to highlight the 3d geometry of the image frame. -->
+      <a-light type="ambient" intensity="1" target="#hope-redblend" position="1.5 0.6 2.5"> </a-light>
     </a-entity>
     <a-entity image-target id="castel">
       <!--  Display a 3d model of an image frame. -->
       <a-entity id="castel" gltf-model="#castel-glb" position="0.015 -0.01 0" rotation="0 -90 0" scale=".5 .75 .7"></a-entity>
 
       <!-- Add extra lighting to highlight the 3d geometry of the image frame. -->
-      <a-light type="directional" intensity="1" target="#castel" position="1.5 0.6 2.5"> </a-light>
+      <a-light type="ambient" intensity="1" target="#castel" position="1.5 0.6 2.5"> </a-light>
     </a-entity>
     <a-entity image-target id="sauvignonBlanc">
       <!--  Display a 3d model of an image frame. -->
       <a-entity id="marlborough" gltf-model="#marlborough-glb" position="0.015 -0.01 0" rotation="0 -90 0" scale=".5 .75 .7"></a-entity>
 
       <!-- Add extra lighting to highlight the 3d geometry of the image frame. -->
-      <a-light type="directional" intensity="1" target="#marlborough" position="1.5 0.6 2.5"> </a-light>
+      <a-light type="ambient" intensity="1" target="#marlborough" position="1.5 0.6 2.5"> </a-light>
     </a-entity>
 
     <!-- Onboarding -->
