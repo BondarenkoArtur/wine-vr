@@ -28,6 +28,9 @@ You can all needed information from [8thWall console](https://console.8thwall.co
 Firstly you will need to generate ssl certificate for https (8thWall will not work through http)  
 Then expected that you'll have certificates in folder `/etc/letsencrypt/live/[yourdomain]`
 
+### Important!
+Before building image please replace domain in `Dockerfile` from `8wall.69.mu` to domain that you are using.
+
 To build docker image:  
 1. Open folder with project  
 2. `docker build -t wine-vr .`  
