@@ -1,33 +1,37 @@
-# 8th Wall Web
+# Troubleshooting
 
-8th Wall Web: Web AR for mobile devices!
+You can all needed information from [8thWall console](https://console.8thwall.com/web)
 
-Built entirely using standards-compliant JavaScript and WebGL, 8th Wall Web is a complete implementation of 8th Wall’s Simultaneous Localization and Mapping (SLAM) engine, hyper-optimized for real-time AR on mobile browsers. Features include 6-Degrees of Freedom Tracking, Surface Estimation, Lighting, World Points and Hit Tests.
+* If you are creating new app:  
+  * Click "Create a new Web App" in a console  
+  * Enter Application Name and click "Create"
 
-- - -
+* If you need to change App Key
+  * Select needed project 
+  * Copy My App Key from 8thWall console
+  * Paste it into `imagetarget/index.html` file (There will be line "Replace the app key here with your own app key")
 
-# Resources
+* If you moved to different domain
+  * Select needed project 
+  * Click "Connect an allowed origin" 
+  * Paste needed domain name
+  * Click "Plus icon"
 
-* [Getting Started Guide](https://github.com/8thwall/web/tree/master/gettingstarted)
-* [Documentation](https://docs.8thwall.com/web)
-* [8th Wall Website](https://www.8thwall.com)
+* If you need to add or replace marker
+  * Click "Add an image target" or "Manage image targets"
+  * Upload an image (it should be at aspect 3:4 and had resolution minimum 480x640)
+  * Add metadata in JSON format (for example `{ "id": "castel" }`)
+  * This id should be used in `imagetarget/index.html` file
 
-* [Serving projects locally](https://github.com/8thwall/web/tree/master/serve) - A "serve" script that will run a local https webserver on your development computer. Useful for development and testing of 8th Wall Web projects.
+# How to run in a Docker
 
-# Web AR Examples
+Firstly you will need to generate ssl certificate for https (8thWall will not work through http)  
+Then expected that you'll have certificates in folder `/etc/letsencrypt/live/[yourdomain]`
 
-* [A-Frame Examples](https://github.com/8thwall/web/tree/master/examples/aframe)(Recommended to start)
-* [Babylon.js Examples](https://github.com/8thwall/web/tree/master/examples/babylonjs)
-* [three.js Examples](https://github.com/8thwall/web/tree/master/examples/threejs)
-* [Camera Pipeline Examples](https://github.com/8thwall/web/tree/master/examples/camerapipeline)
-* [Amazon Sumerian Setup](https://github.com/8thwall/web/tree/master/gettingstarted/xrsumerian)
+To build docker image:  
+1. Open folder with project  
+2. `docker build -t wine-vr .`  
 
-# Dockering
-
-To build docker image use:
-
-`docker build -t wine-vr .`
-
-To run docker image on https port use
-
-`docker run --rm -it -p 443:8080 wine-vr`
+To run docker image on https port (443):  
+You can use next command after you built docker image.
+`docker run --rm -it -p 443:8080 -v "/etc/letsencrypt:/etc/letsencrypt" wine-vr`  

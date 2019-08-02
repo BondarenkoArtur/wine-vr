@@ -3,6 +3,7 @@ set -e
 DIR=$(cd $(dirname ${BASH_SOURCE})/.. ; pwd)
 
 export NO_RELOAD=true
+IGNORE_CERT=false
 PRINT_INSTRUCTIONS=true
 
 function usage() {
@@ -14,6 +15,10 @@ function usage() {
   echo "8  -h        hot reload on localhost"
   echo "8  -r        enable hot reload"
   echo "8  -i IFACE  choose network interface"
+  echo "8  -a ADDR   address for certificate"
+  echo "8            certificates expected in"
+  echo "8            /etc/letsencrypt/live/$ADDR folder"
+  echo "8  -w        run without certificate"
   echo "8  -n        don't print these instructions"
   echo "8  -- ...    forwarded to serve"
   echo "8"
@@ -26,6 +31,8 @@ while [ ! -z "$1" ]; do
     -d) shift; SERVE=$(cd $1 && pwd); shift;;
     -p) shift; export PORT=$1; shift;;
     -r) export NO_RELOAD=false; shift;;
+    -a) shift; export ADDR=$1; shift;;
+    -w) export IGNORE_CERT=true; shift;;
     -h) export USE_LOCALHOST=true; shift;;
     -i) shift; export NET_IFACE=$1; shift;;
     -n) PRINT_INSTRUCTIONS=""; shift;;
@@ -47,14 +54,19 @@ if [ ! -e "${DIR}/node_modules" ]; then
   exit 1
 fi
 
-C_FILE="/tmp/c.pem"
+if ! "${IGNORE_CERT}"; then
+    if [ -z "${ADDR}" ]; then
+        echo "You need to enter your address or run with -w"
+        exit 2
+    fi
 
-if [ ! -e $C_FILE ]; then
-  echo "Trying to create cert file"
-  cat /etc/letsencrypt/live/8wall.69.mu/cert.pem > $C_FILE
-  cat /etc/letsencrypt/live/8wall.69.mu/privkey.pem >> $C_FILE
+    C_FILE="/tmp/c.pem"
+    if [ ! -e $C_FILE ]; then
+      echo "Trying to create cert file"
+      cat /etc/letsencrypt/live/$ADDR/cert.pem > $C_FILE
+      cat /etc/letsencrypt/live/$ADDR/privkey.pem >> $C_FILE
+    fi
+    export CERT_FILE=$C_FILE
 fi
-
-export CERT_FILE=$C_FILE
 
 cd ${DIR} && node src/index.js ${SERVE} $@

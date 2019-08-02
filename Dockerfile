@@ -25,4 +25,4 @@ COPY imagetarget /app/imagetarget
 
 EXPOSE 8080
 # serve dist folder on port 8080
-CMD ["serve/bin/serve", "-d", "imagetarget", "-p", "8080"]
+CMD ["serve/bin/serve", "-d", "imagetarget", "-p", "8080", "-a", "8wall.69.mu"]
