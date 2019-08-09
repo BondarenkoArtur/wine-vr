@@ -25,7 +25,6 @@
 
     <!-- XR Extras - provides utilities like load screen, almost there, and error handling.
          See github.com/8thwall/web/xrextras -->
-    <!-- <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script> -->
     <script src="./xrextras.js"></script>
 
     <!-- 8thWall Web - Replace the app key here with your own app key -->
@@ -56,7 +55,6 @@
       </div>
     </div>
 
-    <!-- <div class="nextbutton" id="nextbutton">Next &gt;</div> -->
     <a-scene
       xrweb="disableWorldTracking: true"
       xrextras-generate-image-targets="primitive: image-target"
@@ -70,14 +68,17 @@
           id="one-hope-cabernet"
           src="./assets/gltf-models/scroll/ScrollNEW.glb"
         ></a-asset-item>
-        <a-asset-item id="castel" src="./assets/dark_castel.glb"></a-asset-item>
+        <a-asset-item
+          id="castel"
+          src="./assets/gltf-models/dark_castel.glb"
+        ></a-asset-item>
         <a-asset-item
           id="one-hope-redblend"
-          src="./assets/dark_onehope_redblend.glb"
+          src="./assets/gltf-models/dark_onehope_redblend.glb"
         ></a-asset-item>
         <a-asset-item
           id="marlborough-sun"
-          src="./assets/dark_marlborough.glb"
+          src="./assets/gltf-models/dark_marlborough.glb"
         ></a-asset-item>
       </a-assets>
 
@@ -95,6 +96,13 @@
           position="0.015 -1.1 0"
           scale="1.8 1.8 1.8"
         ></a-entity>
+        <a-light
+          type="ambient"
+          intensity="2"
+          target="#cabernet"
+          position="1.5 0.6 2.5"
+        >
+        </a-light>
       </a-entity>
       <a-entity xrextras-named-image-target="name: Castel">
         <a-entity
@@ -103,6 +111,13 @@
           rotation="0 -90 0"
           scale=".5 .75 .7"
         ></a-entity>
+        <a-light
+          type="ambient"
+          intensity="1"
+          target="#castel"
+          position="1.5 0.6 2.5"
+        >
+        </a-light>
       </a-entity>
       <a-entity xrextras-named-image-target="name: Sauvignon Blanc">
         <a-entity
@@ -111,6 +126,13 @@
           rotation="0 -90 0"
           scale=".5 .75 .7"
         ></a-entity>
+        <a-light
+          type="ambient"
+          intensity="1"
+          target="#marlborough-sun"
+          position="1.5 0.6 2.5"
+        >
+        </a-light>
       </a-entity>
     </a-scene>
   </body>
