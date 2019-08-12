@@ -72,7 +72,8 @@ AFRAME.registerComponent('imagetarget', {
         document.getElementById('cabernet').setAttribute('animation-mixer', {
           clip: 'Take 001',
           loop: 'once',
-          timeScale: '3'
+          duration: '14500',
+          timeScale: '4'
         });
       }
     };
