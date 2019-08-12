@@ -20,7 +20,7 @@ AFRAME.registerComponent('imagetarget', {
     // showImage handles displaying and moving the virtual object to match the image
     const showImage = ({ detail }) => {
       focus.classList.add('hidden');
-      animationHandler(object3D.el.id);
+      animationHandler();
       // Updating position/rotation/scale using object3D is more performant than setAttribute
       object3D.position.copy(detail.position);
       object3D.quaternion.copy(detail.rotation);
@@ -33,7 +33,7 @@ AFRAME.registerComponent('imagetarget', {
     // hideImage handles hiding the virtual object when the image target is lost
     const hideImage = () => {
       object3D.visible = false;
-      // document.getElementById('cabernet').removeAttribute('animation-mixer');
+      document.getElementById('cabernet').removeAttribute('animation-mixer');
       // Remove tapTarget from clickable objects
       tapTarget.classList.remove('cantap');
       focus.classList.remove('hidden');
@@ -67,14 +67,13 @@ AFRAME.registerComponent('imagetarget', {
       markOnboardingAsShowed();
     };
 
-    const animationHandler = object_id => {
-      if (object_id === 'xrextras-imagetargets-One Hope Cabernet') {
-        return document
-          .getElementById('cabernet')
-          .setAttribute(
-            'animation-mixer',
-            'clip: *; repetitions: 0; timeScale: 3'
-          );
+    const animationHandler = () => {
+      if (this.el.id === 'xrextras-imagetargets-One Hope Cabernet') {
+        document.getElementById('cabernet').setAttribute('animation-mixer', {
+          clip: 'Take 001',
+          loop: 'once',
+          timeScale: '3'
+        });
       }
     };
 
