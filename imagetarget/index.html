@@ -68,18 +68,6 @@
           id="one-hope-cabernet"
           src="./assets/gltf-models/scroll/ScrollNEW.glb"
         ></a-asset-item>
-        <a-asset-item
-          id="castel"
-          src="./assets/gltf-models/dark_castel.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="one-hope-redblend"
-          src="./assets/gltf-models/dark_onehope_redblend.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="marlborough-sun"
-          src="./assets/gltf-models/dark_marlborough.glb"
-        ></a-asset-item>
       </a-assets>
 
       <a-camera
@@ -94,42 +82,12 @@
           id="cabernet"
           gltf-model="#one-hope-cabernet"
           position="0.015 -1.1 0"
-          scale="1.8 1.8 1.8"
+          scale="2.5 2.5 2.5"
         ></a-entity>
         <a-light
           type="ambient"
-          intensity="2"
+          intensity="3"
           target="#cabernet"
-          position="1.5 0.6 2.5"
-        >
-        </a-light>
-      </a-entity>
-      <a-entity xrextras-named-image-target="name: Castel">
-        <a-entity
-          gltf-model="#castel"
-          position="0.015 -0.01 0"
-          rotation="0 -90 0"
-          scale=".5 .75 .7"
-        ></a-entity>
-        <a-light
-          type="ambient"
-          intensity="1"
-          target="#castel"
-          position="1.5 0.6 2.5"
-        >
-        </a-light>
-      </a-entity>
-      <a-entity xrextras-named-image-target="name: Sauvignon Blanc">
-        <a-entity
-          gltf-model="#marlborough-sun"
-          position="0.015 -0.01 0"
-          rotation="0 -90 0"
-          scale=".5 .75 .7"
-        ></a-entity>
-        <a-light
-          type="ambient"
-          intensity="1"
-          target="#marlborough-sun"
           position="1.5 0.6 2.5"
         >
         </a-light>
