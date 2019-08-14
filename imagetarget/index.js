@@ -34,9 +34,7 @@ AFRAME.registerComponent("imagetarget", {
 
     // hideImage handles hiding the virtual object when the image target is lost
     const hideImage = () => {
-      
       object3D.visible = false;
-      document.getElementById('cabernet').removeAttribute('animation-mixer');
       // Remove tapTarget from clickable objects
       tapTarget.classList.remove("cantap");
       focus.classList.remove("hidden");
