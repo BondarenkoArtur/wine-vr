@@ -1,96 +1,75 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>8th Wall Web: A-FRAME Image Targets</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap"
-      rel="stylesheet"
-    />
+    <meta charset="utf-8" />
+    <title>Dog</title>
 
     <!-- We've included a slightly modified version of A-Frame, which fixes some polish concerns -->
     <script src="//cdn.8thwall.com/web/aframe/8frame-0.8.2.min.js"></script>
+    <!-- XR Extras - provides utilities like load screen, almost there, and error handling.
+         See github.com/8thwall/web/xrextras -->
+    <script defer src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
     <script
       defer
       src="//cdn.8thwall.com/web/aframe/aframe-animation-component-5.1.2.min.js"
     ></script>
     <script src="//cdn.8thwall.com/web/aframe/aframe-extras-4.2.0.min.js"></script>
 
-    <!-- XR Extras - provides utilities like load screen, almost there, and error handling.
-         See github.com/8thwall/web/xrextras -->
-    <script src="./xrextras.js"></script>
-
     <!-- 8thWall Web - Replace the app key here with your own app key -->
     <script src="//apps.8thwall.com/xrweb?appKey=nTDMJZm7BmqkkXQSP9oDti7HSiM3fUHqxBMgZ8f4np6JJbOKPZoCAGBPeLcyLnegbMsHlU"></script>
-
-    <!-- client code -->
-    <script src="index.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css" />
   </head>
 
   <body>
-    <!-- Onboarding -->
-    <div class="onboarding hidden" id="onboarding-wrapper">
-      <div class="hand">
-        <div class="hand-image">
-          <img src="assets/hand-image.png" alt="hand" />
-        </div>
-      </div>
-      <div class="btn">
-        <button id="onboarding-btn">
-          Push and align with the bottle
-        </button>
-      </div>
-    </div>
-    <div class="focus hidden" id="focus">
-      <div class="focus-image">
-        <img src="assets/focus_yellow.svg" alt="focus" />
-      </div>
-    </div>
-
     <a-scene
-      xrweb="disableWorldTracking: true"
-      xrextras-generate-image-targets="primitive: image-target"
-      xrextras-gesture-detector
+      xrweb
       xrextras-almost-there
       xrextras-loading
       xrextras-runtime-error
     >
+      <!-- We can define assets here to be loaded when A-Frame initializes -->
       <a-assets>
+        <!-- Credit to Poly by Google for the model: https://poly.google.com/view/5ZMAz7_ucTn -->
         <a-asset-item
-          id="one-hope-cabernet"
-          src="./assets/gltf-models/scroll/Scroll.glb"
+          id="dogModel"
+          src="./assets/gltf-models/scroll/Dog.glb"
         ></a-asset-item>
       </a-assets>
 
+      <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
       <a-camera
         id="camera"
-        position="0 4 10"
+        position="0 8 8"
         raycaster="objects: .cantap"
-        cursor="fuse:false; rayOrigin:mouse;"
+        cursor="
+          fuse: false;
+          rayOrigin: mouse;"
       >
       </a-camera>
-      <a-entity xrextras-named-image-target="name: One Hope Cabernet">
-        <a-entity
-          id="cabernet"
-          gltf-model="#one-hope-cabernet"
-          position="0.015 -1.1 0"
-          scale="2.1 2.1 2.1
-        ></a-entity>
-        <a-light
-          type="ambient"
-          intensity="1"
-          target="#cabernet"
-          position="1.5 0.6 2.5"
-        >
-        </a-light>
+
+      <a-entity
+        light="type: directional;
+               intensity: 0.8;"
+        position="1 4.3 2.5"
+      >
+      </a-entity>
+
+      <a-light type="ambient" intensity="1"></a-light>
+
+      <a-entity
+        gltf-model="#dogModel"
+        class="cantap"
+        scale="4 4 4"
+        animation-mixer="clip: *; loop: pingpong"
+      ></a-entity>
+
+      <a-entity
+        id="ground"
+        class="cantap"
+        geometry="primitive: box"
+        material="color: #ffffff; transparent: true; opacity: 0.0"
+        scale="1000 2 1000"
+        position="0 -1 0"
+      >
       </a-entity>
     </a-scene>
   </body>
